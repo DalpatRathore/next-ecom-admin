@@ -39,7 +39,6 @@ export async function PATCH(
     const { userId } = auth();
     const body = await req.json();
     const { label, imageUrl } = body;
-    console.log(body);
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 401 });
@@ -60,6 +59,7 @@ export async function PATCH(
         userId,
       },
     });
+
     if (!storeByUserId) {
       return new NextResponse("Unauthorized", { status: 403 });
     }
@@ -104,6 +104,7 @@ export async function DELETE(
         userId,
       },
     });
+
     if (!storeByUserId) {
       return new NextResponse("Unauthorized", { status: 403 });
     }
@@ -113,6 +114,7 @@ export async function DELETE(
         id: params.billboardId,
       },
     });
+
     return NextResponse.json(billboard);
   } catch (error) {
     console.log(["BILLBOARD_DELETE"], error);

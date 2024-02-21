@@ -1,6 +1,5 @@
 "use client";
 import AlertModal from "@/components/AlertModal";
-import { ApiAlert } from "@/components/ApiAlert";
 import Heading from "@/components/Heading";
 import ImageUpload from "@/components/ImageUpload";
 import { Button } from "@/components/ui/button";
@@ -14,7 +13,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import useOrigin from "@/hooks/useOrigin";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Billboard } from "@prisma/client";
 import { TrashIcon } from "@radix-ui/react-icons";
@@ -43,8 +41,6 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
 
   const params = useParams();
 
-  const origin = useOrigin();
-
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -63,7 +59,6 @@ const BillboardForm = ({ initialData }: BillboardFormProps) => {
   });
 
   const onSubmit = async (values: BillboardFormValues) => {
-    console.log(values);
     console.log(`/api/${params.storeId}/billboards/${params.billboardId}`);
     try {
       setIsLoading(true);
