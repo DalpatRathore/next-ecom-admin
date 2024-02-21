@@ -14,8 +14,11 @@ import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Store } from "@prisma/client";
 import { TrashIcon } from "@radix-ui/react-icons";
+import axios from "axios";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import * as z from "zod";
 
 interface SettingsFormProps {
@@ -31,14 +34,30 @@ const formSchema = z.object({
 type SettingFormValues = z.infer<typeof formSchema>;
 
 const SettingForm = ({ initialData }: SettingsFormProps) => {
+  const router = useRouter();
+
+  const params = useParams();
+
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
+
   const form = useForm<SettingFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData,
   });
-  const onSubmit = (values: SettingFormValues) => {
+
+  const onSubmit = async (values: SettingFormValues) => {
     console.log(values);
+    try {
+      setIsLoading(true);
+      await axios.patch(`/api/stores/${params.storeId}`, values);
+      router.refresh();
+      toast.success("Store updated!");
+    } catch (error) {
+      toast.error("Something went wrong!");
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <>
