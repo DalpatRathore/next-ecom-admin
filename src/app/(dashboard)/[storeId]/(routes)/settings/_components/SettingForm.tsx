@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import useOrigin from "@/hooks/useOrigin";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Store } from "@prisma/client";
 import { TrashIcon } from "@radix-ui/react-icons";
@@ -39,6 +40,8 @@ const SettingForm = ({ initialData }: SettingsFormProps) => {
   const router = useRouter();
 
   const params = useParams();
+
+  const origin = useOrigin();
 
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
