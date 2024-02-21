@@ -1,5 +1,6 @@
 "use client";
 import AlertModal from "@/components/AlertModal";
+import { ApiAlert } from "@/components/ApiAlert";
 import Heading from "@/components/Heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -121,6 +122,12 @@ const SettingForm = ({ initialData }: SettingsFormProps) => {
           </Button>
         </form>
       </Form>
+      <Separator></Separator>
+      <ApiAlert
+        title="NEXT_PUBLIC_API_URL"
+        description={`${origin}/api/${params.storeId}`}
+        variant="public"
+      ></ApiAlert>
     </>
   );
 };
