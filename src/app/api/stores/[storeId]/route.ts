@@ -41,8 +41,10 @@ export async function PATCH(
 }
 export async function DELETE(
   req: Request,
-  params: {
-    storeId: string;
+  {
+    params,
+  }: {
+    params: { storeId: string };
   }
 ) {
   try {

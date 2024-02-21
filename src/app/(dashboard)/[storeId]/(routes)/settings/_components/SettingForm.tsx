@@ -1,4 +1,5 @@
 "use client";
+import AlertModal from "@/components/AlertModal";
 import Heading from "@/components/Heading";
 import { Button } from "@/components/ui/button";
 import {
@@ -59,8 +60,26 @@ const SettingForm = ({ initialData }: SettingsFormProps) => {
       setIsLoading(false);
     }
   };
+
+  const onDelete = async () => {
+    try {
+      setIsLoading(true);
+      await axios.delete(`/api/stores/${params.storeId}`);
+      router.refresh();
+      router.push("/");
+      toast.success("Store deleted!");
+    } catch (error) {
+      toast.error("Make sure you removed all products and categories first.");
+    }
+  };
   return (
     <>
+      <AlertModal
+        isLoading={isLoading}
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+      ></AlertModal>
       <div className="flex items-center justify-between">
         <Heading
           title="Settings"
