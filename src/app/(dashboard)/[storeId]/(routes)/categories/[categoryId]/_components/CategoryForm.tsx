@@ -162,7 +162,7 @@ const CategoryForm = ({ initialData, billboards }: CategoryFormProps) => {
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue
-                          defualtValue={field.value}
+                          defaultValue={field.value}
                           placeholder="Select a billboard"
                         ></SelectValue>
                       </SelectTrigger>
