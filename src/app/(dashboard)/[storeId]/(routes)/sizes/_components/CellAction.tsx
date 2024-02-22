@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { BillboardColumnsProps } from "./SizeColumns";
+import { SizeColumnsProps } from "./SizeColumns";
 import { Button } from "@/components/ui/button";
 import {
   CopyIcon,
@@ -22,7 +22,7 @@ import axios from "axios";
 import AlertModal from "@/components/AlertModal";
 
 interface CellActionProps {
-  data: BillboardColumnsProps;
+  data: SizeColumnsProps;
 }
 
 const CellAction = ({ data }: CellActionProps) => {
@@ -34,19 +34,19 @@ const CellAction = ({ data }: CellActionProps) => {
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Id copied to the clipboard");
+    toast.success("Size Id copied to the clipboard");
   };
 
   const onDelete = async () => {
     try {
       setIsLoading(true);
 
-      await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/sizes/${data.id}`);
       router.refresh();
-      toast.success("Billboard deleted!");
+      toast.success("Size deleted!");
     } catch (error) {
       toast.error(
-        "Make sure you removed all categories using this billboard first."
+        "Make sure you removed all categories using this size first."
       );
     } finally {
       setIsLoading(false);
@@ -75,9 +75,7 @@ const CellAction = ({ data }: CellActionProps) => {
             Copy Id
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id}`)
-            }
+            onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}
           >
             <Pencil2Icon className="w-4 h-4 mr-2"></Pencil2Icon>
             Update
