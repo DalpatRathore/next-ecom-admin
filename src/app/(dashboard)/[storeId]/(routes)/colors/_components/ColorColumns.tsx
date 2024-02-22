@@ -22,7 +22,7 @@ export const ColorColumns: ColumnDef<ColorColumnsProps>[] = [
       <div className="flex items-center gap-x-2">
         {row.original.value}
         <div
-          className="w-6 h-6 rounde-full border shadow-sm"
+          className="w-6 h-6 rounded-full border shadow-sm"
           style={{ backgroundColor: row.original.value }}
         />
       </div>
