@@ -7,6 +7,7 @@ import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { useParams, useRouter } from "next/navigation";
 import { BillboardColumns, BillboardColumnsProps } from "./BillboardColumns";
 import { DataTable } from "@/components/DataTable";
+import ApiList from "@/components/ApiList";
 
 interface BillboardClientProps {
   data: BillboardColumnsProps[];
@@ -35,6 +36,9 @@ const BillboardClient = ({ data }: BillboardClientProps) => {
         data={data}
         searchKey="label"
       ></DataTable>
+      <Heading title="API" description="API calls for Billboards"></Heading>
+      <Separator></Separator>
+      <ApiList entityName="billboards" entityIdName="billboardId"></ApiList>
     </>
   );
 };
