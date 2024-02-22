@@ -3,12 +3,13 @@
 import Heading from "@/components/Heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Billboard } from "@prisma/client";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { useParams, useRouter } from "next/navigation";
+import { BillboardColumns, BillboardColumnsProps } from "./BillboardColumns";
+import { DataTable } from "@/components/DataTable";
 
 interface BillboardClientProps {
-  data: Billboard[];
+  data: BillboardColumnsProps[];
 }
 
 const BillboardClient = ({ data }: BillboardClientProps) => {
@@ -29,6 +30,11 @@ const BillboardClient = ({ data }: BillboardClientProps) => {
         </Button>
       </div>
       <Separator />
+      <DataTable
+        columns={BillboardColumns}
+        data={data}
+        searchKey="label"
+      ></DataTable>
     </>
   );
 };
