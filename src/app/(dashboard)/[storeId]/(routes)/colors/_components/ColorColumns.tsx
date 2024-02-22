@@ -1,0 +1,39 @@
+"use client";
+
+import { ColumnDef } from "@tanstack/react-table";
+import CellAction from "./CellAction";
+
+export type ColorColumnsProps = {
+  id: string;
+  name: string;
+  value: string;
+  createdAt: string;
+};
+
+export const ColorColumns: ColumnDef<ColorColumnsProps>[] = [
+  {
+    accessorKey: "name",
+    header: "Name",
+  },
+  {
+    accessorKey: "value",
+    header: "Value",
+    cell: ({ row }) => (
+      <div className="flex items-center gap-x-2">
+        {row.original.value}
+        <div
+          className="w-6 h-6 rounde-full border shadow-sm"
+          style={{ backgroundColor: row.original.value }}
+        />
+      </div>
+    ),
+  },
+  {
+    accessorKey: "createdAt",
+    header: "Date",
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <CellAction data={row.original}></CellAction>,
+  },
+];
