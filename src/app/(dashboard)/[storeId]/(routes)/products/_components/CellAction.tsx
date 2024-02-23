@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { BillboardColumnsProps } from "./ProductColumns";
+import { ProductColumnsProps } from "./ProductColumns";
 import { Button } from "@/components/ui/button";
 import {
   CopyIcon,
@@ -22,7 +22,7 @@ import axios from "axios";
 import AlertModal from "@/components/AlertModal";
 
 interface CellActionProps {
-  data: BillboardColumnsProps;
+  data: ProductColumnsProps;
 }
 
 const CellAction = ({ data }: CellActionProps) => {
@@ -41,13 +41,11 @@ const CellAction = ({ data }: CellActionProps) => {
     try {
       setIsLoading(true);
 
-      await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/products/${data.id}`);
       router.refresh();
-      toast.success("Billboard deleted!");
+      toast.success("Product deleted!");
     } catch (error) {
-      toast.error(
-        "Make sure you removed all categories using this billboard first."
-      );
+      toast.error("Something went wrong.");
     } finally {
       setIsLoading(false);
       setOpen(false);
@@ -76,7 +74,7 @@ const CellAction = ({ data }: CellActionProps) => {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id}`)
+              router.push(`/${params.storeId}/products/${data.id}`)
             }
           >
             <Pencil2Icon className="w-4 h-4 mr-2"></Pencil2Icon>

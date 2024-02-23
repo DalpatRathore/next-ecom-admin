@@ -32,7 +32,7 @@ const ProductClient = ({ data }: ProductClientProps) => {
       <DataTable
         columns={ProductColumns}
         data={data}
-        searchKey="label"
+        searchKey="name"
       ></DataTable>
       <Heading title="API" description="API calls for Products"></Heading>
       <Separator></Separator>
