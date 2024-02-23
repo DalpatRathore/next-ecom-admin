@@ -94,7 +94,7 @@ const ProductForm = ({
   });
 
   const onSubmit = async (values: ProductFormValues) => {
-    console.log(`/api/${params.storeId}/products/${params.productId}`);
+    console.log(values);
     try {
       setIsLoading(true);
       if (initialData) {
@@ -164,7 +164,7 @@ const ProductForm = ({
                   <ImageUpload
                     value={field.value.map(image => image.url)}
                     disabled={isLoading}
-                    onChange={url => field.onChange([...field.value], { url })}
+                    onChange={url => field.onChange([...field.value, { url }])}
                     onRemove={url =>
                       field.onChange([
                         ...field.value.filter(current => current.url !== url),

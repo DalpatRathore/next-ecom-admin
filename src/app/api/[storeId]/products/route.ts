@@ -80,7 +80,7 @@ export async function POST(
     if (!colorId) {
       return new NextResponse("ColorId is required", { status: 400 });
     }
-    if (!images || images.length) {
+    if (!images || !images.length) {
       return new NextResponse("Images are required", { status: 400 });
     }
 
