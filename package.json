@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.29.7",
+    "@clerk/nextjs": "^5.1.6",
     "@hookform/resolvers": "^3.3.4",
     "@prisma/client": "^5.9.1",
     "@radix-ui/react-checkbox": "^1.0.4",
